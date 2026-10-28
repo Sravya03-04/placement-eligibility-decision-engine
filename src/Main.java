@@ -23,18 +23,20 @@ public class Main {
                 2026);
 
         EligibilityRule percentageRule = new PercentageRule();
+        EligibilityRule backlogRule = new BacklogRule();
+        EligibilityRule yearRule = new GraduationYearRule();
 
         boolean percentagePass = percentageRule.check(candidate, job);
 
-        boolean backlogPass = candidate.getBacklogs() <= job.getMaximumBacklogs();
+        boolean backlogPass = backlogRule.check(candidate, job);
 
-        boolean yearPass = candidate.getGraduationYear() == job.getRequiredGraduationYear();
+        boolean yearPass = yearRule.check(candidate, job);
 
         boolean eligible = percentagePass && backlogPass && yearPass;
 
-        System.out.println("===============================");
+        System.out.println("==================================");
         System.out.println("PLACEMENT ELIGIBILITY RESULT");
-        System.out.println("===============================");
+        System.out.println("==================================");
         System.out.println();
 
         System.out.println("Candidate: " + candidate.getName());
@@ -43,32 +45,32 @@ public class Main {
         System.out.println();
 
         if (percentagePass) {
-            System.out.println("Percentage       : PASS");
+            System.out.println("Percentage     : PASS");
         } else {
-            System.out.println("Percentage       : FAIL");
+            System.out.println("Percentage     : FAIL");
         }
 
         if (backlogPass) {
-            System.out.println("Backlogs         : PASS");
+            System.out.println("Backlogs       : PASS");
         } else {
-            System.out.println("Backlogs         : FAIL");
+            System.out.println("Backlogs       : FAIL");
         }
 
         if (yearPass) {
-            System.out.println("Graduation Year  : PASS");
+            System.out.println("Graduation Year: PASS");
         } else {
-            System.out.println("Graduation Year  : FAIL");
+            System.out.println("Graduation Year: FAIL");
         }
 
         System.out.println();
 
         if (eligible) {
-            System.out.println("Final Result : ELIGIBLE");
+            System.out.println("Final Result: ELIGIBLE");
         } else {
-            System.out.println("Final Result : NOT ELIGIBLE");
+            System.out.println("Final Result: NOT ELIGIBLE");
         }
 
-        System.out.println("===============================");
+        System.out.println("==================================");
 
         scanner.close();
     }
